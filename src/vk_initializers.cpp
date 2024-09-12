@@ -1,8 +1,7 @@
 ﻿#include <vk_initializers.h>
 
 //> init_cmd
-VkCommandPoolCreateInfo vkinit::command_pool_create_info(uint32_t queueFamilyIndex,
-    VkCommandPoolCreateFlags flags /*= 0*/)
+VkCommandPoolCreateInfo vkinit::command_pool_create_info(uint32_t queueFamilyIndex, VkCommandPoolCreateFlags flags /*= 0*/)
 {
     VkCommandPoolCreateInfo info = {};
     info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
@@ -13,8 +12,7 @@ VkCommandPoolCreateInfo vkinit::command_pool_create_info(uint32_t queueFamilyInd
 }
 
 
-VkCommandBufferAllocateInfo vkinit::command_buffer_allocate_info(
-    VkCommandPool pool, uint32_t count /*= 1*/)
+VkCommandBufferAllocateInfo vkinit::command_buffer_allocate_info(VkCommandPool pool, uint32_t count /*= 1*/)
 {
     VkCommandBufferAllocateInfo info = {};
     info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -142,8 +140,7 @@ VkRenderingAttachmentInfo vkinit::attachment_info(
 }
 //< color_info
 //> depth_info
-VkRenderingAttachmentInfo vkinit::depth_attachment_info(
-    VkImageView view, VkImageLayout layout /*= VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL*/)
+VkRenderingAttachmentInfo vkinit::depth_attachment_info( VkImageView view, VkImageLayout layout /*= VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL*/)
 {
     VkRenderingAttachmentInfo depthAttachment {};
     depthAttachment.sType = VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO;
