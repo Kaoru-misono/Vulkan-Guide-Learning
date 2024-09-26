@@ -10,6 +10,7 @@
 
 #include "VkBootstrap.h"
 #include "vk_descriptors.h"
+#include "vk_loader.h"
 
 struct DeletionQueue
 {
@@ -102,6 +103,7 @@ public:
 	VmaAllocator _allocator;
 
 	AllocatedImage _drawImage;
+	AllocatedImage _depthImage;
 	VkExtent2D _drawExtent;
 
 	DescriptorAllocator globalDescriptorAllocator;
@@ -128,6 +130,9 @@ public:
 
 	GPUMeshBuffers rectangle;
 
+	std::vector<std::shared_ptr<MeshAsset>> testMeshes;
+
+	GPUMeshBuffers uploadMesh(std::span<uint32_t> indices, std::span<Vertex> vertices);
 	void immediate_submit(std::function<void(VkCommandBuffer cmd)>&& function);
 
 
@@ -154,7 +159,6 @@ private:
 	void draw_geometry(VkCommandBuffer cmd);
 	void draw_imgui(VkCommandBuffer cmd, VkImageView targetImageView);
 
-	GPUMeshBuffers uploadMesh(std::span<uint32_t> indices, std::span<Vertex> vertices);
 };
 
 
