@@ -64,7 +64,9 @@ public:
 	bool _isInitialized{ false };
 	int _frameNumber {0};
 	bool stop_rendering{ false };
+	bool resize_requested{ false };
 	VkExtent2D _windowExtent{ 1700 , 900 };
+	float renderScale = 1.f;
 
 	struct SDL_Window* _window{ nullptr };
 
@@ -151,6 +153,7 @@ private:
 	void init_imgui();
 
 	void create_swapchain(uint32_t width, uint32_t height);
+	void resize_swapchain();
 	void destroy_swapchain();
 	AllocatedBuffer create_buffer(size_t allocSize, VkBufferUsageFlags usage, VmaMemoryUsage memoryUsage);
 	void destroy_buffer(const AllocatedBuffer& buffer);
