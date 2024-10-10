@@ -38,6 +38,7 @@ struct FrameData
 	VkFence _renderFence;
 
     DeletionQueue _deletionQueue;
+	DescriptorAllocatorGrowable _frameDescriptors;
 };
 
 struct ComputePushConstants {
@@ -54,6 +55,15 @@ struct ComputeEffect {
 	VkPipelineLayout layout;
 
 	ComputePushConstants data;
+};
+
+struct GPUSceneData {
+    glm::mat4 view;
+    glm::mat4 proj;
+    glm::mat4 viewproj;
+    glm::vec4 ambientColor;
+    glm::vec4 sunlightDirection; // w for sun power
+    glm::vec4 sunlightColor;
 };
 
 constexpr unsigned int FRAME_OVERLAP = 2;
@@ -108,7 +118,7 @@ public:
 	AllocatedImage _depthImage;
 	VkExtent2D _drawExtent;
 
-	DescriptorAllocator globalDescriptorAllocator;
+	DescriptorAllocatorGrowable globalDescriptorAllocator;
 
 	VkDescriptorSet _drawImageDescriptors;
 	VkDescriptorSetLayout _drawImageDescriptorLayout;
@@ -131,6 +141,10 @@ public:
 	VkPipeline _meshPipeline;
 
 	GPUMeshBuffers rectangle;
+
+	GPUSceneData sceneData;
+
+	VkDescriptorSetLayout _gpuSceneDataDescriptorLayout;
 
 	std::vector<std::shared_ptr<MeshAsset>> testMeshes;
 
